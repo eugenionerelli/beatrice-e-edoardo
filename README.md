@@ -23,6 +23,8 @@ wedding-invite-demo/
 └── assets/img/     → (vuota) qui metterai le tue foto
 ```
 
+**Online su** <https://eugenionerelli.github.io/beatrice-e-edoardo/>
+
 ## Anteprima sul tuo Mac
 
 Doppio click su `index.html` e si apre nel browser: per un sito così basta.
@@ -96,69 +98,72 @@ nuovi sul sito, sostituisci il `<link>` in `index.html` e i nomi in
 
 ---
 
-## Pubblicare — prima un avvertimento su Google Drive
+# Pubblicazione
 
-Questa cartella ora è dentro Google Drive. Per **lavorarci e basta** va
-benissimo, ma **prima di usare `git`** conviene copiarla fuori (es. in
-`~/Siti/`): Drive sincronizza male la cartella nascosta `.git` e può
-corromperla.
+## Stato attuale ✅
+
+Il sito è **online su GitHub Pages**:
+
+**<https://eugenionerelli.github.io/beatrice-e-edoardo/>**
+
+- Repository: <https://github.com/eugenionerelli/beatrice-e-edoardo> (pubblico)
+- Sorgente: branch `main`, cartella radice `/`
+- **Ogni `git push` aggiorna il sito da solo**, in circa un minuto.
+
+Il flusso di lavoro quotidiano è quindi:
 
 ```bash
-cp -R "wedding-invite-demo" ~/Siti/wedding-invite
-cd ~/Siti/wedding-invite
+cd ~/Siti/beatrice-e-edoardo
+# ...modifichi i file...
+git add . && git commit -m "Aggiornato il programma" && git push
 ```
 
-(Per Cloudflare Pages con caricamento diretto — opzione B — git non serve
-proprio, quindi puoi anche lasciare tutto dov'è.)
+> ⚠️ **Attenzione a Google Drive.** La copia originale in
+> `Il mio Drive/wedding-invite-demo/` è rimasta lì come bozza, ma **il
+> repository vive in `~/Siti/beatrice-e-edoardo`**: Drive sincronizza male la
+> cartella nascosta `.git` e la corrompe. Lavora sempre nella copia in
+> `~/Siti/`, non in quella dentro Drive, altrimenti le due divergono.
 
-## Opzione A — GitHub Pages
+> Nota: il repo è **pubblico** perché GitHub Pages gratuito lo richiede —
+> chiunque può leggere il codice (non è un problema: sono nomi di fantasia).
+> Per un repo **privato** serve un piano a pagamento, oppure Cloudflare Pages,
+> che pubblica anche da repo privati senza costi.
 
-1. Crea il repository e carica i file:
+## Prossimo passo: l'URL `beatriceandedoardo.pages.dev`
 
-   ```bash
-   cd ~/Siti/wedding-invite
-   git init && git add . && git commit -m "Sito invito"
-   gh repo create wedding-invite --public --source=. --push
-   ```
+Cloudflare Pages regala un sottodominio nella forma `NOME.pages.dev`. Al
+momento del controllo **`beatriceandedoardo` risultava libero** (verifica di
+nuovo prima: se `https://beatriceandedoardo.pages.dev` non risponde, è ancora
+disponibile).
 
-   (senza `gh`: crea il repo vuoto su [github.com/new](https://github.com/new),
-   poi `git remote add origin https://github.com/TUO-USERNAME/wedding-invite.git`
-   e `git push -u origin main`.)
+Il collegamento richiede un login nel browser, quindi va fatto a mano —
+sei/sette clic, una volta sola:
 
-2. Sul repo: **Settings → Pages → Build and deployment** →
-   Source: *Deploy from a branch* → Branch: `main`, cartella `/ (root)` → Save.
+1. Vai su [dash.cloudflare.com](https://dash.cloudflare.com) e accedi.
+2. **Workers & Pages** → **Create** → scheda **Pages** → **Connect to Git**.
+3. Autorizza Cloudflare ad accedere a GitHub e scegli il repo
+   **`beatrice-e-edoardo`**.
+4. Nella schermata di configurazione, il campo **Project name** è quello che
+   determina l'URL: scrivi esattamente **`beatriceandedoardo`**.
+5. Impostazioni di build — il sito è statico, quindi vanno lasciate vuote:
+   - Framework preset: **None**
+   - Build command: **(vuoto)**
+   - Build output directory: **`/`**
+6. **Save and Deploy**. Dopo ~1 minuto il sito è su
+   `https://beatriceandedoardo.pages.dev`, e da lì in poi si aggiorna da solo
+   a ogni `git push`, esattamente come GitHub Pages.
 
-3. Dopo ~1 minuto il sito è su
-   `https://TUO-USERNAME.github.io/wedding-invite/`.
+I due URL possono convivere: stesso repo, due indirizzi. Se poi vorrai tenerne
+uno solo, basta disattivare Pages dalle *Settings* del repo GitHub.
 
-Ogni `git push` successivo aggiorna il sito da solo.
+## Più avanti: un dominio vero
 
-> Nota: con un repo **pubblico** chiunque può vedere anche il codice; se lo
-> vuoi **privato**, GitHub Pages sui repo privati richiede un piano a
-> pagamento — in quel caso meglio Cloudflare Pages.
-
-## Opzione B — Cloudflare Pages (consigliata: più flessibile)
-
-**B1. Caricamento diretto, senza git** (il modo più veloce in assoluto):
-
-1. [dash.cloudflare.com](https://dash.cloudflare.com) → **Workers & Pages** →
-   **Create** → scheda **Pages** → **Upload assets**.
-2. Dai un nome al progetto e **trascina dentro la cartella** del sito.
-3. Fine: il sito è su `https://NOME-PROGETTO.pages.dev`. Per aggiornarlo,
-   ricarichi la cartella dalla stessa pagina.
-
-**B2. Collegato a GitHub** (aggiornamento automatico a ogni push):
-
-1. Prima pubblica il repo su GitHub (passo 1 dell'opzione A — il repo può
-   essere anche **privato**, il sito resta visibile lo stesso).
-2. **Workers & Pages → Create → Pages → Connect to Git**, autorizza GitHub e
-   scegli il repo.
-3. Impostazioni di build: framework *None*, comando di build **vuoto**,
-   output directory `/`. → **Save and Deploy**.
-
-**Dominio personalizzato** (es. `beatriceedoardo.it`): su entrambe le
-piattaforme si può collegare gratis; su Cloudflare è particolarmente comodo
-se il dominio lo compri/gestisci lì (progetto → *Custom domains*).
+`.pages.dev` e `.github.io` sono gratis ma restano sottodomini. Un dominio tuo
+(es. `beatriceedoardo.it`, ~10–15 €/anno) si collega gratis a entrambe le
+piattaforme — su Cloudflare dal progetto → *Custom domains*. Attenzione: i
+domini davvero gratuiti tipo `.tk`/`.ml` non sono più una via praticabile
+(Freenom ha chiuso le registrazioni), quindi le opzioni serie sono il
+sottodominio gratuito o un dominio a pagamento.
 
 ---
 
