@@ -116,6 +116,65 @@ e crea `.nojekyll`.
 
 ---
 
+## Quanto costa davvero (verificato il 19 luglio 2026)
+
+Fonti dirette: [webstudio.is/pricing](https://webstudio.is/pricing) e la
+documentazione degli [share link](https://docs.webstudio.is/university/foundations/share-links).
+
+| Piano | Prezzo | Include |
+|---|---|---|
+| **Hobby** | **0 €** | Progetti e pagine illimitati, export statico, **share link con permesso Build** (quello che serve all'MCP) |
+| Pro | 15 $/mese (annuale) | Domini personalizzati *su hosting Webstudio*, CMS, storage/form più ampi |
+| Team | 35 $/mese (annuale) | Come Pro, per collaborazione in team |
+
+**Il permesso *Build* sui link di condivisione è esplicitamente gratuito** — non
+serve Pro per l'automazione via CLI/MCP. Noi non usiamo comunque l'hosting di
+Webstudio (pubblichiamo su GitHub/Cloudflare Pages), quindi anche i limiti del
+piano gratuito su storage e domini non ci riguardano. **Lo stack Webstudio
+costa zero**, indipendentemente dall'IA che eventualmente lo pilota.
+
+## Un'alternativa gratuita a Pinegrow: GrapesJS
+
+Nella scorsa iterazione avevo indicato Pinegrow (~50 €/anno) come unica opzione
+per "un canvas visuale sui file HTML/CSS veri, senza ricostruire nulla".
+Esiste anche un'alternativa **completamente gratuita e open source**:
+[GrapesJS](https://github.com/GrapesJS/grapesjs) (licenza BSD-3, oltre 25.000
+stelle su GitHub, versione 0.22 a metà 2026).
+
+A differenza di Webstudio, GrapesJS è progettato apposta per **importare ed
+editare HTML/CSS esistenti** — è la sua caratteristica distintiva. Gira
+interamente in locale, nessun account richiesto. Il compromesso: è più uno
+strumento da sviluppatore che un prodotto "no-code" rifinito come Webstudio o
+Pinegrow — richiede un minimo di setup (è una libreria da incorporare in una
+pagina, non un'app pronta all'uso). Esiste anche una versione più rifinita a
+pagamento (*Studio SDK*, con un livello gratuito), ma il nucleo open source
+basta per questo progetto.
+
+Se in futuro il canvas di Webstudio dovesse stare stretto e Pinegrow sembrasse
+troppo per un solo sito, GrapesJS è l'opzione da provare prima di pagare
+qualcosa.
+
+## Autoospitare Webstudio: cosa risolve e cosa no
+
+Il builder di Webstudio stesso (non solo l'export) è open source (licenza
+AGPL-3.0) e autoospitabile via Docker Compose + PostgreSQL — c'è anche una
+guida della comunità: [webstudio-self-host](https://github.com/webstudio-community/webstudio-self-host).
+
+**Ma attenzione a cosa risolve.** Autoospitare il builder significa far girare
+tu stesso *lo stesso identico codice* che gira su webstudio.is, su un tuo
+server. Non è un'altra versione con più funzioni: è la stessa applicazione.
+Quindi **non aggiunge** una funzione di "importa HTML esistente" che nella
+versione cloud non c'è — se quella funzione non c'è nel codice, non c'è
+nemmeno autoospitato. Il limite "il canvas non importa HTML" è una scelta del
+prodotto (il suo modello dati interno), non una restrizione della versione
+cloud.
+
+Autoospitare ha senso per altri motivi — indipendenza da webstudio.is,
+controllo dei dati, uso come piattaforma multi-progetto — ma comporta gestire
+un server, Docker, PostgreSQL e i backup: per un solo sito d'invito è
+complessità aggiunta senza un beneficio corrispondente. Meglio l'account
+gratuito su webstudio.is.
+
 ## Sicurezza
 
 Il share link **è una credenziale**: chi ce l'ha può modificare il progetto.

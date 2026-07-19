@@ -22,11 +22,14 @@ beatrice-e-edoardo/
 ├── js/main.js      → conto alla rovescia, animazioni, modulo RSVP
 ├── assets/img/     → (vuota) qui metterai le tue foto
 ├── design/
-│   ├── STACK.md        → lo stack completo: Webstudio + MCP + Pages
-│   ├── WEBSTUDIO.md    → dal canvas alla pubblicazione (senza CLI)
-│   ├── spec.html       → scheda visiva: palette, font, scala, spaziature
-│   ├── contenuti.md    → tutti i testi e i link Maps da incollare
-│   └── GUIDA-DA-ZERO.md → guida per chi parte da capo, senza basi tecniche
+│   ├── STACK.md               → lo stack completo: Webstudio + MCP + Pages
+│   ├── WEBSTUDIO.md           → dal canvas alla pubblicazione (senza CLI)
+│   ├── webstudio-rebuild-plan.md → ricostruzione via MCP: sintassi reale, pronta da eseguire
+│   ├── spec.html              → scheda visiva: palette, font, scala, spaziature
+│   ├── contenuti.md           → tutti i testi e i link Maps da incollare
+│   └── GUIDA-DA-ZERO.md       → guida per chi parte da capo, senza basi tecniche (italiano)
+├── for-a-friend/
+│   └── START-HERE.md  → la stessa guida da zero, in inglese, autonoma — per chi non parla italiano
 └── scripts/
     ├── setup-webstudio.sh    → collega il progetto e configura l'MCP (una volta)
     ├── build-e-pubblica.sh   → compila con il CLI e manda online
@@ -56,6 +59,18 @@ Dettagli in **[design/STACK.md](design/STACK.md)**.
 
 Dettagli in **[design/WEBSTUDIO.md](design/WEBSTUDIO.md)**. Tieni aperta
 `design/spec.html` accanto all'editor: ha tutti i valori da riprodurre.
+
+Per far costruire il design direttamente a me (o a un altro agente) via MCP,
+sezione per sezione con verifica visiva: **[design/webstudio-rebuild-plan.md](design/webstudio-rebuild-plan.md)**.
+
+## Per chi non parla italiano
+
+`for-a-friend/START-HERE.md` è la stessa guida da zero
+([GUIDA-DA-ZERO.md](design/GUIDA-DA-ZERO.md)), riscritta in inglese e resa
+autonoma — non presuppone questo repo, usa nomi generici, e include il
+percorso "qualcuno ha già costruito il sito e te lo passa" via
+`webstudio import --to`. Pensata per essere copiata così com'è e mandata a chi
+ne ha bisogno.
 
 **Online su** <https://eugenionerelli.github.io/beatrice-e-edoardo/>
 
