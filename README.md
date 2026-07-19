@@ -16,12 +16,33 @@ modificare con un editor di testo, perfetto per GitHub Pages o Cloudflare Pages
 ## Struttura
 
 ```
-wedding-invite-demo/
+beatrice-e-edoardo/
 ├── index.html      → tutti i contenuti (nomi, testi, orari, luoghi, foto)
 ├── css/style.css   → colori, font, spaziature (design)
 ├── js/main.js      → conto alla rovescia, animazioni, modulo RSVP
-└── assets/img/     → (vuota) qui metterai le tue foto
+├── assets/img/     → (vuota) qui metterai le tue foto
+├── design/         → workspace per ridisegnare in Webstudio
+│   ├── WEBSTUDIO.md  → la guida: dal canvas alla pubblicazione
+│   ├── spec.html     → scheda visiva: palette, font, scala, spaziature
+│   └── contenuti.md  → tutti i testi e i link Maps da incollare
+└── scripts/
+    └── importa-webstudio.sh → mette l'export di Webstudio in produzione
 ```
+
+## Ridisegnare il sito
+
+Il design lo rifai tu in **[Webstudio](https://webstudio.is)** (open source,
+gratuito, esporta statico). Parti da **[design/WEBSTUDIO.md](design/WEBSTUDIO.md)**.
+
+In breve: apri `design/spec.html` accanto all'editor, ricostruisci nel canvas,
+esporti come *static site*, poi
+
+```bash
+./scripts/importa-webstudio.sh
+```
+
+e lo script mette l'export in produzione conservando README, `design/` e
+`scripts/`. Non fa commit: prima guardi, poi decidi.
 
 **Online su** <https://eugenionerelli.github.io/beatrice-e-edoardo/>
 
