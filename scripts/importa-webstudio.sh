@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 #
-# Porta in produzione un export statico di Webstudio.
+# Porta in produzione un sito statico prodotto da Webstudio.
 #
-#   ./scripts/importa-webstudio.sh                 → usa lo zip più recente in ~/Downloads
-#   ./scripts/importa-webstudio.sh percorso.zip    → usa lo zip indicato
+#   ./scripts/importa-webstudio.sh                 → zip più recente in ~/Downloads
+#   ./scripts/importa-webstudio.sh percorso.zip    → lo zip indicato
+#   ./scripts/importa-webstudio.sh dist/           → una cartella già compilata
+#                                                    (usato da build-e-pubblica.sh)
 #
 # Cosa fa: svuota la radice del sito e ci mette dentro l'export, lasciando intatti
 # README, design/, scripts/, .gitignore e la cronologia git.
@@ -55,30 +57,41 @@ if [ -n "$(git status --porcelain)" ]; then
 fi
 ok "Repository pulito: puoi sempre annullare con  git checkout ."
 
-# ── 2. Trova lo zip ──────────────────────────────────────────────────────────
-
-if [ $# -ge 1 ]; then
-  ZIP="$1"
-  [ -f "$ZIP" ] || { err "File non trovato: $ZIP"; exit 1; }
-else
-  info "Cerco l'export più recente in ~/Downloads…"
-  ZIP="$(find "$HOME/Downloads" -maxdepth 1 -name '*.zip' -type f -print0 2>/dev/null \
-         | xargs -0 ls -t 2>/dev/null | head -1 || true)"
-  if [ -z "$ZIP" ]; then
-    err "Nessuno zip trovato in ~/Downloads."
-    echo "Indica il file a mano:  ./scripts/importa-webstudio.sh ~/percorso/export.zip"
-    exit 1
-  fi
-fi
-
-ok "Export: ${B}$(basename "$ZIP")${N}  ($(du -h "$ZIP" | cut -f1))"
-
-# ── 3. Verifica che sia davvero un sito statico ──────────────────────────────
+# ── 2. Trova la sorgente: uno zip scaricato oppure una cartella già compilata ─
 
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 
-unzip -q "$ZIP" -d "$TMP" || { err "Zip illeggibile o danneggiato."; exit 1; }
+if [ $# -ge 1 ] && [ -d "$1" ]; then
+  # Caso CLI: `webstudio build --template ssg` ha già prodotto una cartella.
+  # La copiamo in TMP così i controlli e la guardia "sorgente dentro TMP"
+  # restano identici al caso zip — una sola logica da mantenere e testare.
+  ORIGINE="$(cd "$1" && pwd)"
+  case "$ORIGINE" in
+    "$RADICE") err "La sorgente non può essere la radice del repository."; exit 1 ;;
+  esac
+  ok "Sorgente: cartella ${B}$(basename "$ORIGINE")${N}"
+  cp -R "$ORIGINE"/. "$TMP"/
+else
+  if [ $# -ge 1 ]; then
+    ZIP="$1"
+    [ -f "$ZIP" ] || { err "Non è né un file né una cartella: $ZIP"; exit 1; }
+  else
+    info "Cerco l'export più recente in ~/Downloads…"
+    ZIP="$(find "$HOME/Downloads" -maxdepth 1 -name '*.zip' -type f -print0 2>/dev/null \
+           | xargs -0 ls -t 2>/dev/null | head -1 || true)"
+    if [ -z "$ZIP" ]; then
+      err "Nessuno zip trovato in ~/Downloads."
+      echo "Indica il file a mano:  ./scripts/importa-webstudio.sh ~/percorso/export.zip"
+      echo "Oppure una cartella:    ./scripts/importa-webstudio.sh dist/"
+      exit 1
+    fi
+  fi
+  ok "Sorgente: zip ${B}$(basename "$ZIP")${N}  ($(du -h "$ZIP" | cut -f1))"
+  unzip -q "$ZIP" -d "$TMP" || { err "Zip illeggibile o danneggiato."; exit 1; }
+fi
+
+# ── 3. Verifica che sia davvero un sito statico ──────────────────────────────
 
 # L'export può stare nella radice dello zip o dentro una cartella: troviamo index.html.
 # ATTENZIONE: cercare index.html e poi fare dirname del risultato vuoto darebbe ".",
@@ -87,9 +100,9 @@ unzip -q "$ZIP" -d "$TMP" || { err "Zip illeggibile o danneggiato."; exit 1; }
 INDEX="$(find "$TMP" -name index.html -not -path '*/__MACOSX/*' -print 2>/dev/null | head -1)"
 
 if [ -z "$INDEX" ]; then
-  err "Nello zip non c'è nessun index.html: non è un sito statico."
+  err "Nella sorgente non c'è nessun index.html: non è un sito statico."
   echo
-  echo "Contenuto dello zip:"
+  echo "Contenuto trovato:"
   find "$TMP" -maxdepth 2 -mindepth 1 -not -path '*__MACOSX*' | sed "s|$TMP|  |" | head -20
   echo
   if find "$TMP" -name package.json -not -path '*/node_modules/*' | grep -q .; then

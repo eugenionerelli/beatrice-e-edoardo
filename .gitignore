@@ -1,2 +1,22 @@
+# macOS
 .DS_Store
 Icon?
+
+# Webstudio CLI — stato locale, si rigenera con `webstudio sync`
+.webstudio/
+.temp/
+
+# Dipendenze e output intermedi del progetto generato
+node_modules/
+dist/
+build/
+.cache/
+
+# ⚠️ SEGRETI — contengono il token del progetto: non devono finire su GitHub.
+# Si rigenerano con `./scripts/setup-webstudio.sh`.
+.webstudio.json
+webstudio.config.json
+.mcp.json
+.cursor/mcp.json
+.env
+.env.*

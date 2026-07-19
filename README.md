@@ -21,28 +21,41 @@ beatrice-e-edoardo/
 ├── css/style.css   → colori, font, spaziature (design)
 ├── js/main.js      → conto alla rovescia, animazioni, modulo RSVP
 ├── assets/img/     → (vuota) qui metterai le tue foto
-├── design/         → workspace per ridisegnare in Webstudio
-│   ├── WEBSTUDIO.md  → la guida: dal canvas alla pubblicazione
-│   ├── spec.html     → scheda visiva: palette, font, scala, spaziature
-│   └── contenuti.md  → tutti i testi e i link Maps da incollare
+├── design/
+│   ├── STACK.md        → lo stack completo: Webstudio + MCP + Pages
+│   ├── WEBSTUDIO.md    → dal canvas alla pubblicazione (senza CLI)
+│   ├── spec.html       → scheda visiva: palette, font, scala, spaziature
+│   ├── contenuti.md    → tutti i testi e i link Maps da incollare
+│   └── GUIDA-DA-ZERO.md → guida per chi parte da capo, senza basi tecniche
 └── scripts/
-    └── importa-webstudio.sh → mette l'export di Webstudio in produzione
+    ├── setup-webstudio.sh    → collega il progetto e configura l'MCP (una volta)
+    ├── build-e-pubblica.sh   → compila con il CLI e manda online
+    └── importa-webstudio.sh  → porta in produzione uno zip o una cartella
 ```
 
 ## Ridisegnare il sito
 
-Il design lo rifai tu in **[Webstudio](https://webstudio.is)** (open source,
-gratuito, esporta statico). Parti da **[design/WEBSTUDIO.md](design/WEBSTUDIO.md)**.
+Il design si rifà in **[Webstudio](https://webstudio.is)** (open source, gratuito,
+esporta statico). Due modi, intercambiabili:
 
-In breve: apri `design/spec.html` accanto all'editor, ricostruisci nel canvas,
-esporti come *static site*, poi
+**Con l'automazione** — Webstudio ha un MCP ufficiale nel suo CLI, quindi Claude
+Code può modificare il design a comando. Preparazione in un colpo:
+
+```bash
+./scripts/setup-webstudio.sh          # chiede il share link, fa il resto
+./scripts/build-e-pubblica.sh         # compila; --pubblica per mandare online
+```
+
+Dettagli in **[design/STACK.md](design/STACK.md)**.
+
+**A mano** — disegni nel canvas, esporti lo zip, e
 
 ```bash
 ./scripts/importa-webstudio.sh
 ```
 
-e lo script mette l'export in produzione conservando README, `design/` e
-`scripts/`. Non fa commit: prima guardi, poi decidi.
+Dettagli in **[design/WEBSTUDIO.md](design/WEBSTUDIO.md)**. Tieni aperta
+`design/spec.html` accanto all'editor: ha tutti i valori da riprodurre.
 
 **Online su** <https://eugenionerelli.github.io/beatrice-e-edoardo/>
 
