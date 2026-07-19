@@ -1,0 +1,563 @@
+/* ═══════════════════════════════════════════════════════════════
+   INVITO DI NOZZE — foglio di stile
+   Stile "black tie": carta avorio, nero inchiostro, tipografia
+   sottile e spaziata, tanto respiro bianco.
+   PERSONALIZZA: i colori e i font sono tutti qui sotto, in :root.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Palette */
+  --carta: #f6f4ef;        /* sfondo avorio */
+  --inchiostro: #171716;   /* testo principale */
+  --inchiostro-tenue: #55544f;
+  --linea: rgba(23, 23, 22, 0.28);
+  --scuro: #2e2e2b;        /* bottone di conferma */
+
+  /* Font (caricati da Google Fonts in index.html) */
+  --font-display: "Julius Sans One", sans-serif;   /* nomi e titoli in maiuscolo */
+  --font-serif: "Cormorant Garamond", Georgia, serif; /* testi */
+  --font-script: "Pinyon Script", cursive;          /* accenti calligrafici */
+  --font-sans: "Karla", Helvetica, sans-serif;      /* etichette e bottoni */
+}
+
+/* ── Base ─────────────────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background-color: var(--carta);
+  color: var(--inchiostro);
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Leggera texture "carta" su tutta la pagina */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.54 0 0 0 0 0.5 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+main, header, footer { position: relative; z-index: 1; }
+
+img { max-width: 100%; display: block; }
+
+section { padding: 5.5rem 1.5rem; }
+
+/* ── Copertina ────────────────────────────────────────────────── */
+
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  padding: 3rem 1rem 4.5rem;
+}
+
+/* Monogramma con le iniziali sovrapposte */
+.monogramma {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  line-height: 1;
+  letter-spacing: 0;
+  animation: apparire 1.8s ease both;
+}
+.monogramma .mono-a { display: inline-block; }
+.monogramma .mono-b {
+  display: inline-block;
+  font-family: var(--font-script);
+  font-size: 2.9rem;
+  margin-left: -0.55rem;
+  position: relative;
+  top: 0.55rem;
+}
+
+.hero-nomi { animation: apparire 2.2s 0.3s ease both; }
+
+.hero-nomi h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.1rem, 7.5vw, 5.2rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+
+.hero-nomi .amp {
+  font-family: var(--font-script);
+  text-transform: none;
+  font-size: 0.72em;
+  margin: 0 0.08em;
+  position: relative;
+  top: 0.08em;
+}
+
+.hero-data {
+  margin: 1.6rem 0 0;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(1.15rem, 2.6vw, 1.6rem);
+  letter-spacing: 0.45em;
+  text-indent: 0.45em; /* compensa l'ultimo letter-spacing per restare centrati */
+}
+
+/* Invito a scorrere: una sottile linea verticale animata */
+.scroll-hint {
+  display: block;
+  width: 1px;
+  height: 4rem;
+  overflow: hidden;
+}
+.scroll-hint span {
+  display: block;
+  width: 1px;
+  height: 100%;
+  background: var(--inchiostro);
+  animation: scorrere 2.4s ease-in-out infinite;
+}
+
+@keyframes apparire {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes scorrere {
+  0%   { transform: translateY(-100%); }
+  55%  { transform: translateY(0); }
+  100% { transform: translateY(100%); }
+}
+
+/* ── Animazione di comparsa allo scroll ───────────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 1.1s ease, transform 1.1s ease;
+}
+.reveal.visibile {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── La nostra storia ─────────────────────────────────────────── */
+
+.storia {
+  max-width: 42rem;
+  margin: 0 auto;
+  text-align: center;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.2rem, 2.4vw, 1.45rem);
+}
+
+.storia p { margin: 0 0 1.6rem; }
+
+.storia-claim {
+  font-style: normal;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  letter-spacing: 0.22em;
+  margin-top: 2.8rem;
+}
+
+/* ── Titoli calligrafici ("manca poco...", "il nostro giorno...") ── */
+
+.titolo-script {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 6vw, 4rem);
+  text-align: center;
+  margin: 0 0 3rem;
+}
+
+/* ── Conto alla rovescia ──────────────────────────────────────── */
+
+.countdown { text-align: center; }
+
+.countdown-griglia {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1.2rem, 5vw, 3.5rem);
+  flex-wrap: wrap;
+}
+
+.cd-box { min-width: 4.5rem; }
+
+.cd-num {
+  display: block;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(2.4rem, 6vw, 3.8rem);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.cd-label {
+  display: block;
+  margin-top: 0.4rem;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--inchiostro-tenue);
+}
+
+/* ── Programma della giornata ─────────────────────────────────── */
+
+.programma { text-align: center; }
+
+.evento { max-width: 34rem; margin: 0 auto; }
+
+.evento-ora {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  letter-spacing: 0.12em;
+  margin: 0 0 0.6rem;
+}
+
+.evento-nome {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  letter-spacing: 0.28em;
+  margin: 0 0 1.1rem;
+}
+
+.evento-luogo {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.85rem;
+  margin: 0 0 0.2rem;
+}
+
+.evento-indirizzo {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  color: var(--inchiostro-tenue);
+  margin: 0 0 1.6rem;
+}
+
+/* Bottone "Mostra la posizione" (link a Google Maps) */
+.btn-luogo {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.7rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--inchiostro);
+  border: 1px solid var(--inchiostro);
+  padding: 0.85em 1.8em 0.85em calc(1.8em + 0.32em);
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+.btn-luogo:hover,
+.btn-luogo:focus-visible {
+  background-color: var(--inchiostro);
+  color: var(--carta);
+}
+
+/* Sottile linea verticale tra un evento e l'altro */
+.separatore {
+  width: 1px;
+  height: 4.5rem;
+  background: var(--linea);
+  margin: 3rem auto;
+}
+
+.dress-code {
+  margin: 4.5rem 0 0;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.78rem;
+  color: var(--inchiostro-tenue);
+}
+.dress-code em {
+  font-family: var(--font-script);
+  font-style: normal;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 1.6rem;
+  color: var(--inchiostro);
+  margin-left: 0.3rem;
+}
+
+/* ── Galleria ─────────────────────────────────────────────────── */
+
+.galleria { max-width: 68rem; margin: 0 auto; }
+
+.galleria-griglia {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.galleria-griglia img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  filter: saturate(0.82);
+  cursor: zoom-in;
+  transition: filter 0.4s ease, opacity 0.4s ease;
+}
+.galleria-griglia img:hover { filter: saturate(1); }
+
+.galleria-credit {
+  text-align: center;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--inchiostro-tenue);
+  margin-top: 1.6rem;
+}
+
+/* Lightbox */
+#lightbox {
+  border: none;
+  padding: 0;
+  background: transparent;
+  max-width: min(92vw, 60rem);
+  max-height: 88vh;
+}
+#lightbox::backdrop { background: rgba(15, 15, 14, 0.88); }
+#lightbox img {
+  max-width: 100%;
+  max-height: 88vh;
+  object-fit: contain;
+  cursor: zoom-out;
+}
+
+/* ── RSVP ─────────────────────────────────────────────────────── */
+
+.rsvp {
+  max-width: 34rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.rsvp-titolo {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(1.3rem, 3.4vw, 1.9rem);
+  letter-spacing: 0.24em;
+  margin: 0 0 1.4rem;
+}
+
+.rsvp-sottotitolo {
+  font-style: italic;
+  font-weight: 300;
+  margin: 0 0 3rem;
+}
+
+#rsvp-form { text-align: left; }
+
+.campo { margin-bottom: 1.8rem; }
+
+.campo-riga {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.campo label,
+.campo-scelta legend {
+  display: block;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--inchiostro-tenue);
+  margin-bottom: 0.5rem;
+}
+
+.campo input,
+.campo textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--linea);
+  background: transparent;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--inchiostro);
+  padding: 0.35em 0.1em;
+  border-radius: 0;
+}
+.campo input:focus,
+.campo textarea:focus {
+  outline: none;
+  border-bottom-color: var(--inchiostro);
+}
+.campo textarea { resize: vertical; }
+
+.campo-scelta {
+  border: none;
+  padding: 0;
+  margin: 0 0 1.8rem;
+}
+
+.scelte { display: flex; gap: 1rem; }
+
+.chip input { position: absolute; opacity: 0; }
+
+.chip span {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  border: 1px solid var(--linea);
+  padding: 0.7em 1.9em 0.7em calc(1.9em + 0.28em);
+  cursor: pointer;
+  transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+.chip input:checked + span {
+  background: var(--inchiostro);
+  border-color: var(--inchiostro);
+  color: var(--carta);
+}
+.chip input:focus-visible + span {
+  outline: 2px solid var(--inchiostro);
+  outline-offset: 2px;
+}
+
+.btn-conferma {
+  display: block;
+  margin: 2.6rem auto 0;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.78rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--carta);
+  background: var(--scuro);
+  border: 1px solid var(--scuro);
+  padding: 1em 3em 1em calc(3em + 0.32em);
+  cursor: pointer;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+.btn-conferma:hover,
+.btn-conferma:focus-visible {
+  background: transparent;
+  color: var(--inchiostro);
+}
+
+.rsvp-nota {
+  text-align: center;
+  font-style: italic;
+  font-size: 1.05rem;
+  margin-top: 1.6rem;
+}
+
+/* ── Citazione finale ─────────────────────────────────────────── */
+
+.citazione {
+  text-align: center;
+  padding-top: 3rem;
+  padding-bottom: 7rem;
+}
+.citazione p {
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+  max-width: 34rem;
+  margin: 0 auto;
+}
+
+/* ── Footer ───────────────────────────────────────────────────── */
+
+.footer {
+  text-align: center;
+  border-top: 1px solid var(--linea);
+  padding: 3rem 1.5rem 3.5rem;
+}
+.footer p { margin: 0.3rem 0; }
+.footer-nomi {
+  font-family: var(--font-script);
+  font-size: 2rem;
+}
+.footer-data {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--inchiostro-tenue);
+}
+.footer-demo {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--inchiostro-tenue);
+  opacity: 0.7;
+  margin-top: 1.2rem;
+}
+
+/* ── Mobile ───────────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  section { padding: 4rem 1.25rem; }
+
+  /* Il conto alla rovescia su una riga sola non ci sta: griglia 2x2 */
+  .countdown-griglia {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 1rem;
+    max-width: 20rem;
+    margin: 0 auto;
+  }
+
+  .galleria-griglia { grid-template-columns: repeat(2, 1fr); gap: 0.7rem; }
+
+  .campo-riga { grid-template-columns: 1fr; gap: 0; }
+
+  .hero { padding-bottom: 3rem; }
+
+  /* Su schermo stretto i nomi si impilano su tre righe, con la "&" al centro:
+     evita che resti orfana in fondo alla prima riga. */
+  .hero-nomi .amp {
+    display: block;
+    font-size: 1.6rem;
+    margin: 0.25em 0;
+    top: 0;
+  }
+}
+
+/* ── Accessibilità: meno animazioni se richiesto dal sistema ──── */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .monogramma, .hero-nomi { animation: none; }
+  .scroll-hint span { animation: none; }
+}

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       INVITO DI NOZZE — DEMO
+       Nomi e contenuti di fantasia. Foto: Unsplash (licenza libera).
+       Cerca i commenti "PERSONALIZZA" per i punti da modificare.
+       ═══════════════════════════════════════════════════════════════ -->
+
+  <!-- PERSONALIZZA: titolo e descrizione (compaiono su Google e nelle anteprime WhatsApp) -->
+  <title>Beatrice &amp; Edoardo · 12 giugno 2027</title>
+  <meta name="description" content="Ci sposiamo! Sabato 12 giugno 2027, Varenna — Lago di Como. Tutti i dettagli e la conferma di presenza.">
+
+  <!-- Un sito di invito di solito NON deve comparire su Google: questa riga lo nasconde ai motori di ricerca. Rimuovila se invece vuoi essere trovato. -->
+  <meta name="robots" content="noindex">
+
+  <!-- Anteprima quando condividi il link (WhatsApp, Telegram, iMessage) -->
+  <meta property="og:title" content="Beatrice & Edoardo — 12 giugno 2027">
+  <meta property="og:description" content="Ci sposiamo! Tutti i dettagli e la conferma di presenza.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=70">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23f6f4ef'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='30' text-anchor='middle' fill='%23161616'%3EB·E%3C/text%3E%3C/svg%3E">
+
+  <!-- Font gratuiti da Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Julius+Sans+One&family=Karla:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ═══════════ COPERTINA ═══════════ -->
+  <header class="hero">
+    <!-- PERSONALIZZA: iniziali del monogramma -->
+    <div class="monogramma" aria-hidden="true">
+      <span class="mono-a">B</span><span class="mono-b">E</span>
+    </div>
+
+    <div class="hero-nomi">
+      <!-- PERSONALIZZA: i vostri nomi -->
+      <h1>Beatrice <span class="amp">&amp;</span> Edoardo</h1>
+      <!-- PERSONALIZZA: la data -->
+      <p class="hero-data">12 . 06 . 2027</p>
+    </div>
+
+    <a class="scroll-hint" href="#storia" aria-label="Scorri per scoprire i dettagli">
+      <span></span>
+    </a>
+  </header>
+
+  <main>
+
+    <!-- ═══════════ LA NOSTRA STORIA ═══════════ -->
+    <section class="storia reveal" id="storia">
+      <!-- PERSONALIZZA: il vostro racconto -->
+      <p>
+        Tutto è cominciato per caso, un pomeriggio di pioggia e un ombrello
+        prestato alla persona sbagliata — o forse a quella giusta. Da quel
+        giorno ogni strada percorsa insieme ci ha portato un po' più vicini,
+        tra risate, viaggi e domeniche lente.
+      </p>
+      <p>
+        Dopo otto anni fianco a fianco, con il cuore pieno di gratitudine,
+        vogliamo condividere con voi il momento più importante del nostro
+        cammino
+      </p>
+      <p class="storia-claim">— l'inizio del nostro «per sempre».</p>
+    </section>
+
+    <!-- ═══════════ CONTO ALLA ROVESCIA ═══════════ -->
+    <section class="countdown reveal" aria-label="Conto alla rovescia al matrimonio">
+      <h2 class="titolo-script">manca poco...</h2>
+      <div class="countdown-griglia" id="countdown">
+        <div class="cd-box"><span class="cd-num" id="cd-giorni">–</span><span class="cd-label">Giorni</span></div>
+        <div class="cd-box"><span class="cd-num" id="cd-ore">–</span><span class="cd-label">Ore</span></div>
+        <div class="cd-box"><span class="cd-num" id="cd-minuti">–</span><span class="cd-label">Minuti</span></div>
+        <div class="cd-box"><span class="cd-num" id="cd-secondi">–</span><span class="cd-label">Secondi</span></div>
+      </div>
+    </section>
+
+    <!-- ═══════════ PROGRAMMA DELLA GIORNATA ═══════════ -->
+    <section class="programma" id="programma">
+      <h2 class="titolo-script reveal">il nostro giorno...</h2>
+
+      <!-- PERSONALIZZA: per ogni evento cambia orario, nome, luogo, indirizzo
+           e il link Google Maps. Per ottenere il link: cerca il luogo su
+           https://maps.google.com → Condividi → Copia link, e incollalo in href.
+           In alternativa funziona sempre:
+           https://www.google.com/maps/search/?api=1&query=NOME+LUOGO+CITTÀ -->
+
+      <article class="evento reveal">
+        <p class="evento-ora">15:00</p>
+        <h3 class="evento-nome">Ritrovo degli ospiti</h3>
+        <p class="evento-luogo">Villa Cipressi</p>
+        <p class="evento-indirizzo">Via IV Novembre 22, Varenna (LC)</p>
+        <a class="btn-luogo" href="https://www.google.com/maps/search/?api=1&query=Villa+Cipressi+Varenna" target="_blank" rel="noopener">Mostra la posizione</a>
+      </article>
+
+      <div class="separatore" aria-hidden="true"></div>
+
+      <article class="evento reveal">
+        <p class="evento-ora">16:00</p>
+        <h3 class="evento-nome">Cerimonia</h3>
+        <p class="evento-luogo">Chiesa di San Giorgio</p>
+        <p class="evento-indirizzo">Piazza San Giorgio, Varenna (LC)</p>
+        <a class="btn-luogo" href="https://www.google.com/maps/search/?api=1&query=Chiesa+di+San+Giorgio+Varenna" target="_blank" rel="noopener">Mostra la posizione</a>
+      </article>
+
+      <div class="separatore" aria-hidden="true"></div>
+
+      <article class="evento reveal">
+        <p class="evento-ora">18:30</p>
+        <h3 class="evento-nome">Ricevimento</h3>
+        <p class="evento-luogo">Giardini di Villa Cipressi</p>
+        <p class="evento-indirizzo">Via IV Novembre 22, Varenna (LC)</p>
+        <a class="btn-luogo" href="https://www.google.com/maps/search/?api=1&query=Villa+Cipressi+Varenna" target="_blank" rel="noopener">Mostra la posizione</a>
+      </article>
+
+      <p class="dress-code reveal">Dress code · <em>black tie</em></p>
+    </section>
+
+    <!-- ═══════════ GALLERIA ═══════════ -->
+    <section class="galleria reveal" id="galleria">
+      <h2 class="titolo-script">i nostri momenti...</h2>
+      <!-- PERSONALIZZA: sostituisci le foto con le vostre.
+           Metti i file in assets/img/ e usa src="assets/img/nome-foto.jpg".
+           Queste sono foto Unsplash (licenza libera), usate come segnaposto. -->
+      <div class="galleria-griglia">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=70" alt="Gli sposi mano nella mano" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=70" alt="Passeggiata sotto la pioggia" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1000&q=70" alt="Scintille di festa" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1000&q=70" alt="L'uscita degli sposi" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1000&q=70" alt="La tavola della festa" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=70" alt="Mani intrecciate" loading="lazy">
+      </div>
+      <p class="galleria-credit">Foto segnaposto · Unsplash</p>
+    </section>
+
+    <!-- ═══════════ RSVP ═══════════ -->
+    <section class="rsvp reveal" id="rsvp">
+      <h2 class="rsvp-titolo">Conferma la tua presenza</h2>
+      <!-- PERSONALIZZA: la data entro cui rispondere -->
+      <p class="rsvp-sottotitolo">
+        Ti chiediamo di confermare entro il 12 maggio 2027 —
+        e di unirti a noi in un giorno di festa, musica e gioia!
+      </p>
+
+      <!-- Questo modulo è "statico": alla conferma apre il tuo programma di
+           posta con il messaggio già compilato. Nel README trovi le
+           alternative (Formspree, Tally, Google Form) per ricevere le
+           risposte in automatico. -->
+      <form id="rsvp-form" novalidate>
+        <div class="campo-riga">
+          <div class="campo">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" autocomplete="given-name" required>
+          </div>
+          <div class="campo">
+            <label for="cognome">Cognome</label>
+            <input type="text" id="cognome" name="cognome" autocomplete="family-name" required>
+          </div>
+        </div>
+
+        <fieldset class="campo-scelta">
+          <legend>Sarai dei nostri?</legend>
+          <div class="scelte">
+            <label class="chip"><input type="radio" name="presenza" value="Sì" checked><span>Sì</span></label>
+            <label class="chip"><input type="radio" name="presenza" value="No"><span>No</span></label>
+          </div>
+        </fieldset>
+
+        <div class="campo">
+          <label for="ospiti">Numero di ospiti insieme a me</label>
+          <input type="number" id="ospiti" name="ospiti" min="0" max="10" value="0">
+        </div>
+
+        <div class="campo">
+          <label for="nomi-ospiti">Nomi degli ospiti insieme a me</label>
+          <input type="text" id="nomi-ospiti" name="nomi-ospiti" placeholder="">
+        </div>
+
+        <div class="campo">
+          <label for="messaggio">Messaggio</label>
+          <textarea id="messaggio" name="messaggio" rows="3"></textarea>
+        </div>
+
+        <button type="submit" class="btn-conferma">Conferma</button>
+        <p class="rsvp-nota" id="rsvp-nota" hidden></p>
+      </form>
+    </section>
+
+    <!-- ═══════════ CITAZIONE ═══════════ -->
+    <section class="citazione reveal">
+      <p>«E poi scegliersi, ogni giorno,<br>come la prima volta.»</p>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p class="footer-nomi">Beatrice &amp; Edoardo</p>
+    <p class="footer-data">12 . 06 . 2027 · Varenna, Lago di Como</p>
+    <p class="footer-demo">Sito demo — nomi di fantasia, foto Unsplash</p>
+  </footer>
+
+  <!-- Lightbox per la galleria -->
+  <dialog id="lightbox" aria-label="Foto ingrandita">
+    <img src="" alt="">
+  </dialog>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
