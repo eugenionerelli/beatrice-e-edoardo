@@ -30,38 +30,53 @@ beatrice-e-edoardo/
 │   └── GUIDA-DA-ZERO.md       → guida per chi parte da capo, senza basi tecniche (italiano)
 ├── for-a-friend/
 │   └── START-HERE.md  → la stessa guida da zero, in inglese, autonoma — per chi non parla italiano
+├── editor/            → editor visuale locale (GrapesJS): nessun account, nessuna nuvola
+│   ├── LEGGIMI.md      → come funziona, incluso un limite reale trovato testandolo
+│   └── server.py       → avvialo con: python3 editor/server.py
 └── scripts/
-    ├── setup-webstudio.sh    → collega il progetto e configura l'MCP (una volta)
-    ├── build-e-pubblica.sh   → compila con il CLI e manda online
-    └── importa-webstudio.sh  → porta in produzione uno zip o una cartella
+    ├── setup-webstudio.sh    → collega il progetto Webstudio e configura l'MCP (una volta)
+    ├── build-e-pubblica.sh   → compila con il CLI Webstudio e manda online
+    ├── importa-webstudio.sh  → porta in produzione uno zip o una cartella Webstudio
+    └── publish.sh            → commit + push di quel che c'è ora, qualunque editor tu abbia usato
 ```
 
-## Ridisegnare il sito
+## Ridisegnare il sito — tre strade
 
-Il design si rifà in **[Webstudio](https://webstudio.is)** (open source, gratuito,
-esporta statico). Due modi, intercambiabili:
+### 1. Editor locale (GrapesJS) — nessun account, gira già
 
-**Con l'automazione** — Webstudio ha un MCP ufficiale nel suo CLI, quindi Claude
-Code può modificare il design a comando. Preparazione in un colpo:
+```bash
+python3 editor/server.py
+```
+
+poi apri **http://127.0.0.1:8767/editor/**: carica il sito vero (non una copia)
+dentro un canvas visuale — trascini, cambi testo/colori, premi "Salva nel
+progetto" e i file si aggiornano sul disco. Pubblicare resta un passo a parte
+(`./scripts/publish.sh "messaggio"`). Dettagli e un limite reale scoperto
+testandolo (proprietà `background`/`border` in forma compatta, mitigato da un
+foglio di stile separato che si sovrappone senza mai sostituire l'originale):
+**[editor/LEGGIMI.md](editor/LEGGIMI.md)**.
+
+### 2. Webstudio — canvas più ricco, ma si ricostruisce da zero
+
+[Webstudio](https://webstudio.is) (open source, gratuito, esporta statico) ha
+un MCP ufficiale nel suo CLI: Claude Code può modificare il design a comando.
+Il limite: non importa l'HTML esistente, si riparte da una pagina vuota.
 
 ```bash
 ./scripts/setup-webstudio.sh          # chiede il share link, fa il resto
 ./scripts/build-e-pubblica.sh         # compila; --pubblica per mandare online
 ```
 
-Dettagli in **[design/STACK.md](design/STACK.md)**.
+Dettagli in **[design/STACK.md](design/STACK.md)**. In alternativa, a mano nel
+canvas + esportazione zip: **[design/WEBSTUDIO.md](design/WEBSTUDIO.md)** (tieni
+aperta `design/spec.html` accanto all'editor — ha tutti i valori da riprodurre).
+Per farmi ricostruire il design via MCP, sezione per sezione con verifica
+visiva: **[design/webstudio-rebuild-plan.md](design/webstudio-rebuild-plan.md)**.
 
-**A mano** — disegni nel canvas, esporti lo zip, e
+### 3. A mano
 
-```bash
-./scripts/importa-webstudio.sh
-```
-
-Dettagli in **[design/WEBSTUDIO.md](design/WEBSTUDIO.md)**. Tieni aperta
-`design/spec.html` accanto all'editor: ha tutti i valori da riprodurre.
-
-Per far costruire il design direttamente a me (o a un altro agente) via MCP,
-sezione per sezione con verifica visiva: **[design/webstudio-rebuild-plan.md](design/webstudio-rebuild-plan.md)**.
+`index.html` + `css/style.css` sono file normali, commentati con marcatori
+`PERSONALIZZA`. Nessuno strumento è obbligatorio.
 
 ## Per chi non parla italiano
 

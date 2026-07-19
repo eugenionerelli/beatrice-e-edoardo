@@ -1,0 +1,10 @@
+{
+  "name": "editor-locale-invito",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Editor visuale locale (GrapesJS) per il sito invito — nessun account, nessuna nuvola.",
+  "dependencies": {
+    "grapesjs": "^0.22.16",
+    "grapesjs-preset-webpage": "^1.0.3"
+  }
+}

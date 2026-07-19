@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Editor locale — Beatrice &amp; Edoardo</title>
+<link rel="stylesheet" href="node_modules/grapesjs/dist/css/grapes.min.css">
+<style>
+  html, body { margin: 0; height: 100%; font-family: -apple-system, sans-serif; }
+  #barra {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 0.6rem 1rem; background: #24262b; color: #ddd;
+    font-size: 0.85rem; position: sticky; top: 0; z-index: 100;
+  }
+  #barra strong { color: #fff; }
+  #salva {
+    background: #4b7bec; color: #fff; border: none; border-radius: 4px;
+    padding: 0.5rem 1.1rem; font-size: 0.85rem; cursor: pointer;
+  }
+  #salva:hover { background: #3867d6; }
+  #salva:disabled { opacity: 0.6; cursor: wait; }
+  #stato { flex: 1; }
+  #stato.ok { color: #7bed9f; }
+  #stato.errore { color: #ff7675; }
+  #stato.avviso { color: #ffd479; }
+  #gjs { height: calc(100vh - 42px); }
+</style>
+</head>
+<body>
+
+  <div id="barra">
+    <strong>Editor locale</strong>
+    <span>— modifica il sito, poi salva. Pubblicare resta un passo a parte.</span>
+    <span id="stato"></span>
+    <button id="salva">Salva nel progetto</button>
+  </div>
+
+  <div id="gjs"></div>
+
+  <script src="node_modules/grapesjs/dist/grapes.min.js"></script>
+  <script src="node_modules/grapesjs-preset-webpage/dist/index.js"></script>
+  <script src="editor.js"></script>
+</body>
+</html>
