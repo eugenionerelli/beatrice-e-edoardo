@@ -13,14 +13,33 @@ No coding knowledge required. It takes an afternoon, and a willingness to try.
 
 ---
 
-## First: has someone already built this for you?
+## Recommended: start from the ready-made kit
 
-If a friend (or anyone) already designed your site in Webstudio and wants to
-hand it over to you, this is the fast path — skip to
-**[Part 4](#part-4--receiving-a-site-someone-built-for-you)** first, then come
-back here only if you want to change something yourself afterward.
+**<https://github.com/eugenionerelli/wedding-invite-starter-kit>**
 
-Otherwise, keep reading from Part 1.
+This is the fastest, most tested path — a complete, working wedding invite
+site (placeholder names, real design, everything wired up) that you make
+your own in a few clicks, no account beyond GitHub needed:
+
+1. On that repo's page, click the green **"Use this template"** button
+   (top right, next to "Code"). This gives you your own independent copy —
+   not a fork, a fresh repository with your name on it.
+2. Clone it, open `index.html` to see the starting point, then follow the
+   **README in that repo** — it has its own complete guide, including a
+   local visual editor (no Webstudio, no account, edits your real files
+   directly) that's already connected and tested.
+
+Everything below in *this* document still applies conceptually (accounts,
+Google Maps links, going live, the pre-launch checklist) — the starter
+kit's own README covers the same ground with commands and file paths
+specific to what you'll actually have on disk. Read whichever one you land
+on first; they agree with each other.
+
+**If you'd rather build with Webstudio instead** (a different, richer
+canvas — see the comparison in *Part 3* below), or if a friend already
+designed your site *in Webstudio* and wants to hand it to you, keep
+reading: **[Part 4](#part-4--receiving-a-site-someone-built-for-you)**
+covers that path.
 
 ---
 

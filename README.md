@@ -80,12 +80,20 @@ visiva: **[design/webstudio-rebuild-plan.md](design/webstudio-rebuild-plan.md)**
 
 ## Per chi non parla italiano
 
-`for-a-friend/START-HERE.md` è la stessa guida da zero
-([GUIDA-DA-ZERO.md](design/GUIDA-DA-ZERO.md)), riscritta in inglese e resa
-autonoma — non presuppone questo repo, usa nomi generici, e include il
-percorso "qualcuno ha già costruito il sito e te lo passa" via
-`webstudio import --to`. Pensata per essere copiata così com'è e mandata a chi
-ne ha bisogno.
+Due cose pensate per essere mandate così come sono a chi non legge l'italiano:
+
+- **[for-a-friend/START-HERE.md](for-a-friend/START-HERE.md)** — la guida da
+  zero ([GUIDA-DA-ZERO.md](design/GUIDA-DA-ZERO.md)) riscritta in inglese e
+  resa autonoma: non presuppone questo repo, usa nomi generici, include il
+  percorso "qualcuno ha già costruito il sito e te lo passa" via
+  `webstudio import --to`.
+- **[wedding-invite-starter-kit](https://github.com/eugenionerelli/wedding-invite-starter-kit)**
+  — un repository pubblico a sé, template GitHub ("Use this template"), in
+  inglese: stesso design e lo stesso editor locale GrapesJS di questo
+  progetto, ma con contenuti generici (Emma & James) al posto dei nostri e
+  senza gli script specifici di Webstudio. È il percorso più veloce e
+  autonomo — collaudato con un round-trip di salvataggio reale prima di
+  pubblicarlo.
 
 **Online su** <https://eugenionerelli.github.io/beatrice-e-edoardo/>
 
